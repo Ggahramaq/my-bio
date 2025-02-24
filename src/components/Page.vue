@@ -68,8 +68,12 @@ setInterval(add, 300);
             </div>
         </div>
         <div class="flex justify-between gap-4 mt-6">
-            <div class="w-[271px] h-[67px] p-3 border-[0.8px] border-[#1b2731] rounded-lg bg-[#2a2b2b]"></div>
-            <div class="w-[271px] h-[67px] p-3 border-[0.8px] border-[#1b2731] rounded-lg bg-[#2a2b2b]"></div>
+            <div class="w-[271px] h-[67px] p-3 border-[0.8px] border-[#1b2731] rounded-lg bg-[#2a2b2b]">
+                <i class="pi pi-discord"></i>
+            </div>
+            <div class="w-[271px] h-[67px] p-3 border-[0.8px] border-[#1b2731] rounded-lg bg-[#2a2b2b]">
+                <i class="pi pi-github"></i>
+            </div>
         </div>
     </div>
 </template>
