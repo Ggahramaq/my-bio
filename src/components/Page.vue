@@ -22,16 +22,16 @@ const add = () => {
             removeCharacter();
         }
     } else {
-        if (title.value.length > 0) {
+        if (title.value.length > 1) {
             removeCharacter();
         } else {
             isnoname.value = true;
             // addCharacter();
         }
     }
-    document.title = title.value.length > 0 ? title.value : 'My Bio'
+    document.title = title.value
 };
-setInterval(add, 200);
+setInterval(add, 300);
 </script>
 
 <template>
