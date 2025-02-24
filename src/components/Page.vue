@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-
+import avatar from '@/assets/img/avatar.png';
 const nickname = ref('ggahramaq');
 const isnoname = ref(true);
 const title = ref('');
@@ -36,6 +36,10 @@ setInterval(add, 300);
 
 <template>
     <div class="background h-screen w-screen bg-[#16191f] flex justify-center">
-        <div class="w-[555.4px] h-[464.4px] border-[0.8px] border-[#151f27] bg-[#2a2b2b] mt-16 rounded-[12px]"></div>
+        <div class="w-[557px] h-[466px] border-[0.8px] border-[#151f27] bg-[#2a2b2b] mt-16 rounded-[12px]">
+            <div class="w-[555.4px] h-[464.4px] p-[32.5px] items-center flex flex-col">
+                <img :src="avatar" class="h-[91px] w-[91px] aspect-square border rounded-full">
+            </div>
+        </div>
     </div>
 </template>
