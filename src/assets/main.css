@@ -3,7 +3,15 @@
   font-family: 'aspb';
   src: url('AppliedSansProBold.TTF');
 }
+@font-face {
+  font-family: 'aspl';
+  src: url('AppliedSansProLight.TTF');
+}
 
 .nickname {
   font-family: aspb;
+}
+
+.d, .profile {
+  font-family: aspl;
 }
