@@ -39,6 +39,7 @@ setInterval(add, 300);
         <div class="w-[557px] h-[466px] border-[0.8px] border-[#151f27] bg-[#2a2b2b] mt-16 rounded-[12px]">
             <div class="w-[555.4px] h-[464.4px] p-[32.5px] items-center flex flex-col">
                 <img :src="avatar" class="h-[91px] w-[91px] aspect-square border rounded-full">
+                <div class="nickname text-[20px] text-[#757575] mt-6">Ggahramaq</div>
             </div>
         </div>
     </div>
