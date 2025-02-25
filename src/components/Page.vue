@@ -8,7 +8,7 @@ const isnoname = ref(true);
 const title = ref('');
 const username = ref('ggahramaq');
 const audio = ref(new Audio(music));
-
+const toggleMusic = ref(false); 
 
 const copyNickname = () => {
     navigator.clipboard.writeText("ggahramaq");
@@ -45,13 +45,15 @@ const add = () => {
 };
 setInterval(add, 300);
 
-const playMusic = () => {
-  audio.value.play();
-};
-
-// const pauseMusic = () => {
-//   audio.value.pause();
-// };
+const showmusic = () => {
+    toggleMusic.value = !toggleMusic.value;
+    if (toggleMusic.value) {
+        audio.value.play();
+        console.log(audio.value)
+    } else {
+        audio.value.pause();
+    }
+}
 
 
 </script>
@@ -124,7 +126,7 @@ const playMusic = () => {
                         <span class="text-[14px] text-gray-400">00:00</span> 
                         <div class="mt-[6.5px] ml-2 w-[232.78px] h-[8.13px] bg-amber-50 border rounded-full"></div>
                         <span class="ml-2 mt-[-0.5px] text-[14px] text-gray-400">04:02</span> 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" @click="playMusic" class="size-5 ml-2"><path d="M21.4 9.4a3 3 0 0 1 0 5.2l-12.8 7C6.6 22.7 4 21.3 4 19V5c0-2.3 2.5-3.7 4.6-2.6z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" @click="showmusic" class="cursor-pointer size-5 ml-2"><path d="M21.4 9.4a3 3 0 0 1 0 5.2l-12.8 7C6.6 22.7 4 21.3 4 19V5c0-2.3 2.5-3.7 4.6-2.6z"></path></svg>
                         <div class="mt-[5.5px] ml-3 w-[65px] h-[8.13px] bg-amber-50 border rounded-full"></div>
                     </div>
                     
