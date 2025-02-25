@@ -24,3 +24,7 @@
 .d, .profile {
   font-family: aspl;
 }
+
+* {
+  overflow: hidden;
+}

@@ -1,10 +1,14 @@
 <script setup>
 import { ref } from 'vue';
+import musicavatar from '@/assets/img/musicavatar.jpeg'
+import music from '@/assets/music.mp3'
 import avatar from '@/assets/img/avatar.png';
 const nickname = ref('ggahramaq');
 const isnoname = ref(true);
 const title = ref('');
 const username = ref('ggahramaq');
+const audio = ref(new Audio(music));
+
 
 const copyNickname = () => {
     navigator.clipboard.writeText("ggahramaq");
@@ -40,14 +44,24 @@ const add = () => {
     document.title = title.value
 };
 setInterval(add, 300);
+
+const playMusic = () => {
+  audio.value.play();
+};
+
+// const pauseMusic = () => {
+//   audio.value.pause();
+// };
+
+
 </script>
 
 <template>
-    <div class="background h-screen w-screen bg-[#16191f] flex flex-col items-center justify-center">
+    <div class="background h-186 w-screen bg-[#16191f] flex flex-col items-center">
         <div class="w-[557px] h-[440px] border-[0.8px] border-[#1b2731] bg-[#2a2b2b] mt-16 rounded-[12px]">
             <div class="w-[555.4px] h-[450.4px] p-[32.5px] items-center flex flex-col">
                 <img :src="avatar" class="h-[91px] w-[91px] aspect-square border rounded-full">
-                <div class="nickname text-[20px] text-[#757575] mt-6">Ggahramaq</div>
+                <div class="nickname text-[20px] text-[#757575] mt-5">Ggahramaq</div>
                 <div class="flex">
                 <!-- Icons -->
                 </div>
@@ -98,5 +112,25 @@ setInterval(add, 300);
                 </div>
             </div>
         </div>
+        <div class="flex mt-6">
+            <div class="w-[557px] h-[86px] p-3 border-[0.8px] flex border-[#1b2731] rounded-lg bg-[#2a2b2b] relative">
+                <div class="h-[65px] w-[65px] border-[0.8px] flex justify-center items-center rounded-lg bg-[#1f252b]">
+                    <img :src="musicavatar">
+                </div>
+                <!-- Profile Name + Timer -->
+                <div class="ml-2 text-white flex flex-col">
+                    <span class="text-[17px]">???</span>
+                    <div class="flex mt-1">
+                        <span class="text-[14px] text-gray-400">00:00</span> 
+                        <div class="mt-[6.5px] ml-2 w-[232.78px] h-[8.13px] bg-amber-50 border rounded-full"></div>
+                        <span class="ml-2 mt-[-0.5px] text-[14px] text-gray-400">04:02</span> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" @click="playMusic" class="size-5 ml-2"><path d="M21.4 9.4a3 3 0 0 1 0 5.2l-12.8 7C6.6 22.7 4 21.3 4 19V5c0-2.3 2.5-3.7 4.6-2.6z"></path></svg>
+                        <div class="mt-[5.5px] ml-3 w-[65px] h-[8.13px] bg-amber-50 border rounded-full"></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
