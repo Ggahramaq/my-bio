@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import musicavatar from '@/assets/img/musicavatar.jpeg'
 import music from '@/assets/music.mp3'
 import avatar from '@/assets/img/avatar.png';
@@ -55,6 +55,25 @@ const showmusic = () => {
     }
 }
 
+const currentTime = ref(0);
+const duration = ref(0);
+
+const updateTime = () => {
+  const currentSec = Math.floor(audio.value.currentTime);
+  const minutes = Math.floor(currentSec / 60);
+  const seconds = currentSec % 60;
+
+  currentTime.value = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+};
+
+onMounted(() => {
+  audio.value.addEventListener('timeupdate', updateTime);
+  duration.value = audio.value.duration;
+});
+
+onUnmounted(() => {
+  audio.value.removeEventListener('timeupdate', updateTime);
+});
 
 </script>
 
@@ -121,11 +140,13 @@ const showmusic = () => {
                 </div>
                 <!-- Profile Name + Timer -->
                 <div class="ml-2 text-white flex flex-col">
-                    <span class="text-[17px]">???</span>
+                    <span class="text-[17px]">kitty phonk</span>
                     <div class="flex mt-1">
-                        <span class="text-[14px] text-gray-400">00:00</span> 
+                        <span class="text-[14px] text-gray-400">{{currentTime}}</span> 
                         <div class="mt-[6.5px] ml-2 w-[232.78px] h-[8.13px] bg-amber-50 border rounded-full"></div>
-                        <span class="ml-2 mt-[-0.5px] text-[14px] text-gray-400">04:02</span> 
+                        <div class="mt-[6.5px] ml-10 absolute w-[234px] h-[8.13px] bg-amber-800 border rounded-full"></div>
+                        <!-- 234px -->
+                        <span class="ml-2 mt-[-0.5px] text-[14px] text-gray-400">01:30</span> 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" @click="showmusic" class="cursor-pointer size-5 ml-2"><path d="M21.4 9.4a3 3 0 0 1 0 5.2l-12.8 7C6.6 22.7 4 21.3 4 19V5c0-2.3 2.5-3.7 4.6-2.6z"></path></svg>
                         <div class="mt-[5.5px] ml-3 w-[65px] h-[8.13px] bg-amber-50 border rounded-full"></div>
                     </div>
