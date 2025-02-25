@@ -55,7 +55,7 @@ const showmusic = () => {
     }
 }
 
-const currentTime = ref(0);
+const currentTime = ref("00:00");
 const duration = ref(0);
 
 const updateTime = () => {
@@ -66,6 +66,8 @@ const updateTime = () => {
   currentTime.value = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
+// 0${audio.value.currentTime%60}:${audio.value.currentTime-(audio.value.currentTime%60)}
+
 onMounted(() => {
   audio.value.addEventListener('timeupdate', updateTime);
   duration.value = audio.value.duration;
@@ -75,6 +77,15 @@ onUnmounted(() => {
   audio.value.removeEventListener('timeupdate', updateTime);
 });
 
+
+// const musicdata = () => {
+//     duration.value = audio.value.duration;
+//     currentTime.value = audio.value.currentTime;
+
+//     musicinfo.value[0] = duration.value
+//     musicinfo.value[1] = currentTime.value
+//     return musicinfo.value
+// }
 </script>
 
 <template>
@@ -144,7 +155,7 @@ onUnmounted(() => {
                     <div class="flex mt-1">
                         <span class="text-[14px] text-gray-400">{{currentTime}}</span> 
                         <div class="mt-[6.5px] ml-2 w-[232.78px] h-[8.13px] bg-amber-50 border rounded-full"></div>
-                        <div class="mt-[6.5px] ml-10 absolute w-[234px] h-[8.13px] bg-amber-800 border rounded-full"></div>
+                        <div class="mt-[6.5px] ml-[41.1px] absolute w-[234px] h-[8.13px] bg-amber-800 border rounded-full"></div>
                         <!-- 234px -->
                         <span class="ml-2 mt-[-0.5px] text-[14px] text-gray-400">01:30</span> 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" @click="showmusic" class="cursor-pointer size-5 ml-2"><path d="M21.4 9.4a3 3 0 0 1 0 5.2l-12.8 7C6.6 22.7 4 21.3 4 19V5c0-2.3 2.5-3.7 4.6-2.6z"></path></svg>
