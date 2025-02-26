@@ -1,16 +1,22 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @font-face {
   font-family: 'aspb';
-  src: url('AppliedSansProBold.TTF');
+  src: url('WorkSans-Bold.ttf');
 }
 @font-face {
   font-family: 'aspl';
-  src: url('AppliedSansProLight.TTF');
+  src: url('WorkSans-Light.ttf');
+}
+@font-face {
+  font-family: 'aspm';
+  src: url('WorkSans-Medium.ttf');
 }
 
+
 :root {
-  --main-color: #3498db;
+  --main-color: #75bfff;
 }
 
 .theme-color {
@@ -21,8 +27,12 @@
   font-family: aspb;
 }
 
-.d, .profile {
+.d {
   font-family: aspl;
+}
+
+.m {
+  font-family: aspm;
 }
 
 * {
