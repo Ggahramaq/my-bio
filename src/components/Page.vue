@@ -10,6 +10,7 @@ const username = ref('ggahramaq');
 const audio = ref(new Audio(music));
 const toggleMusic = ref(false); 
 const barwidth = ref(0)
+const videoRef = ref(null);
 const copyNickname = () => {
     navigator.clipboard.writeText("ggahramaq");
     username.value = "Copied!"
@@ -45,16 +46,6 @@ const add = () => {
 };
 setInterval(add, 300);
 
-const showmusic = () => {
-    toggleMusic.value = !toggleMusic.value;
-    if (toggleMusic.value) {
-        audio.value.play();
-        console.log(audio.value)
-    } else {
-        audio.value.pause();
-    }
-}
-
 const currentTime = ref("00:00");
 const duration = ref(0);
 
@@ -89,7 +80,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="background h-186 w-screen bg-[#16191f] flex flex-col items-center">
+    <div class="video absolute">
+        <video autoplay muted loop ref="videoRef" src="@/assets/video.mp4"></video>
+    </div>
+    <div class="background absolute h-186 w-screen flex flex-col items-center">
         <div class="w-[557px] h-[440px] border-[0.8px] border-[#1b2731] bg-[#2a2b2b] mt-16 rounded-[12px]">
             <div class="w-[555.4px] h-[450.4px] p-[32.5px] items-center flex flex-col">
                 <img :src="avatar" class="h-[91px] w-[91px] aspect-square border rounded-full">
