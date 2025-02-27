@@ -9,6 +9,7 @@ const title = ref('');
 const username = ref('ggahramaq');
 const audio = ref(new Audio(music));
 const toggleMusic = ref(false); 
+const toggleScreen = ref(false)
 const barwidth = ref(0)
 const videoRef = ref(null);
 const copyNickname = () => {
@@ -81,9 +82,10 @@ onUnmounted(() => {
 
 <template>
     <div class="video absolute">
-        <video autoplay muted loop ref="videoRef" src="@/assets/video.mp4"></video>
+        <video v-if="toggleScreen" autoplay muted loop ref="videoRef" src="@/assets/video.mp4"></video>
+        <video v-else muted loop ref="videoRef" src="@/assets/video.mp4"></video>
     </div>
-    <div class="background absolute h-186 w-screen flex flex-col items-center">
+    <div v-if="toggleScreen" class="background absolute h-186 w-screen flex flex-col items-center">
         <div class="w-[557px] h-[440px] border-[0.8px] border-[#1b2731] bg-[rgba(20, 20, 22, 0.376)] backdrop-blur-[40px] mt-16 rounded-[12px]">
             <div class="w-[555.4px] h-[450.4px] p-[32.5px] items-center flex flex-col">
                 <img :src="avatar" class="h-[91px] w-[91px] aspect-square border rounded-full">
@@ -138,8 +140,8 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-        <!-- <div class="flex mt-6">
-            <div class="w-[557px] h-[86px] p-3 border-[0.8px] flex border-[#1b2731] rounded-lg bg-[#2a2b2b] relative">
+        <div class="flex mt-6">
+            <div class="w-[557px] h-[86px] p-3 border-[0.8px] flex border-[#1b2731] rounded-lg bg-[rgba(20, 20, 22, 0.376)] backdrop-blur-[40px] relative">
                 <div class="h-[65px] w-[65px] border-[0.8px] flex justify-center items-center rounded-lg bg-[#1f252b]">
                     <img :src="musicavatar">
                 </div>
@@ -155,12 +157,19 @@ onUnmounted(() => {
                     </div>
                     
                 </div>
+                <!--
                 <audio controls>
   <source src="@/assets/music.mp3" type="audio/mpeg">
 Your browser does not support the audio element.
-</audio>
+</audio>-->
             </div>
-        </div> -->
+        </div> 
 
+    </div>
+    <div v-else class="absolute">
+        <div class="h-186 w-screen bg-none backdrop-blur-[30px] text-2xl b text-red-500 flex justify-center items-center">
+            <div class="cursor-pointer" @click="toggleScreen = !toggleScreen">
+                CLICK PLEASE</div>
+            </div>
     </div>
 </template>
