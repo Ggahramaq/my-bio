@@ -70,14 +70,14 @@ onUnmounted(() => {
 });
 
 
-// const musicdata = () => {
-//     duration.value = audio.value.duration;
-//     currentTime.value = audio.value.currentTime;
+const musicdata = () => {
+    duration.value = audio.value.duration;
+    currentTime.value = audio.value.currentTime;
 
-//     musicinfo.value[0] = duration.value
-//     musicinfo.value[1] = currentTime.value
-//     return musicinfo.value
-// }
+    musicinfo.value[0] = duration.value
+    musicinfo.value[1] = currentTime.value
+    return musicinfo.value
+}
 </script>
 
 <template>
@@ -140,7 +140,7 @@ onUnmounted(() => {
                 </div>
             </div>
         </div>
-        <div class="flex mt-6">
+        <!-- <div class="flex mt-6">
             <div class="w-[557px] h-[86px] p-3 border-[0.8px] flex border-[#1b2731] rounded-lg bg-[rgba(20, 20, 22, 0.376)] backdrop-blur-[40px] relative">
                 <div class="h-[65px] w-[65px] border-[0.8px] flex justify-center items-center rounded-lg bg-[#1f252b]">
                     <img :src="musicavatar">
@@ -155,15 +155,9 @@ onUnmounted(() => {
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" @click="showmusic" class="cursor-pointer size-5 ml-2"><path d="M21.4 9.4a3 3 0 0 1 0 5.2l-12.8 7C6.6 22.7 4 21.3 4 19V5c0-2.3 2.5-3.7 4.6-2.6z"></path></svg>
                         <div class="mt-[5.5px] ml-3 w-[65px] h-[8.13px] bg-amber-50 border rounded-full"></div>
                     </div>
-                    
                 </div>
-                <!--
-                <audio controls>
-  <source src="@/assets/music.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>-->
             </div>
-        </div> 
+        </div>  -->
 
     </div>
     <div v-else class="absolute">
