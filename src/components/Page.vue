@@ -9,24 +9,9 @@ const title = ref('');
 const username = ref('ggahramaq');
 const audio = ref(new Audio(music));
 const toggleMusic = ref(false); 
-const toggleScreen = ref(false)
+const toggleScreen = ref(true)
 const barwidth = ref(0)
 const videoRef = ref(null);
-
-window.onmousemove = e => {
-  const interactable = e.target.closest(".interactable"),
-        interacting = interactable !== null;
-  
-  const icon = document.getElementById("trailer-icon");
-  
-  animateTrailer(e, interacting);
-  
-  trailer.dataset.type = interacting ? interactable.dataset.type : "";
-  
-  if(interacting) {
-    icon.className = getTrailerClass(interactable.dataset.type);
-  }
-}
 
 const copyNickname = () => {
     navigator.clipboard.writeText("ggahramaq");
@@ -154,11 +139,4 @@ const musicdata = () => {
         </div>
     </div>
     
-    <div v-else class="absolute">
-        <div class="h-186 w-screen bg-none backdrop-blur-[30px] text-2xl b text-red-500 flex justify-center items-center">
-            <div class="cursor-pointer" @click="toggleScreen = !toggleScreen">
-                CLICK PLEASE</div>
-            </div>
-    </div>
-
 </template>
