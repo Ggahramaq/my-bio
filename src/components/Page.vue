@@ -12,12 +12,21 @@ const toggleMusic = ref(false);
 const toggleScreen = ref(false)
 const barwidth = ref(0)
 const videoRef = ref(null);
-const cursorPosition = ref({x: 0, y: 0})
-const isCursorMoving = ref(false);
-const cursorMoveTimeout = ref();
-const circles = ref([]);
-const circleRemovalInterval = ref();
 
+window.onmousemove = e => {
+  const interactable = e.target.closest(".interactable"),
+        interacting = interactable !== null;
+  
+  const icon = document.getElementById("trailer-icon");
+  
+  animateTrailer(e, interacting);
+  
+  trailer.dataset.type = interacting ? interactable.dataset.type : "";
+  
+  if(interacting) {
+    icon.className = getTrailerClass(interactable.dataset.type);
+  }
+}
 
 const copyNickname = () => {
     navigator.clipboard.writeText("ggahramaq");
@@ -65,8 +74,6 @@ const updateTime = () => {
   currentTime.value = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
-// 0${audio.value.currentTime%60}:${audio.value.currentTime-(audio.value.currentTime%60)}
-
 onMounted(() => {
   audio.value.addEventListener('timeupdate', updateTime);
   duration.value = audio.value.duration;
@@ -100,8 +107,6 @@ const musicdata = () => {
                 <div class="flex">
                 <!-- Icons -->
                 </div>
-
-                <!-- <div class="roles flex flex-wrap gap-2 justify-center mt-7"> -->
                 <div class="nickname flex flex-wrap gap-2 justify-center mt-3">
                     <div class="h-[24.35px] w-[88.77px] px-[9.75px] py-[3.25px] border-[1px] border-[#1B2A37] text-white rounded-full d flex justify-center items-center">WEB</div>
                     <div class="h-[24.35px] w-[88.77px] px-[9.75px] py-[3.25px] border-[1px] border-[#1B2A37] text-white rounded-full d flex justify-center items-center">IT</div>
@@ -147,30 +152,13 @@ const musicdata = () => {
                 </div>
             </div>
         </div>
-        <!-- <div class="flex mt-6">
-            <div class="w-[557px] h-[86px] p-3 border-[0.8px] flex border-[#1b2731] rounded-lg bg-[rgba(20, 20, 22, 0.376)] backdrop-blur-[40px] relative">
-                <div class="h-[65px] w-[65px] border-[0.8px] flex justify-center items-center rounded-lg bg-[#1f252b]">
-                    <img :src="musicavatar">
-                </div>
-                <div class="ml-2 text-white flex flex-col">
-                    <span class="text-[17px]">kitty phonk</span>
-                    <div class="flex mt-1">
-                        <span class="text-[14px] text-gray-400">{{currentTime}}</span> 
-                        <div class="mt-[6.5px] ml-2 w-[232.78px] h-[8.13px] bg-amber-50 border rounded-full"></div>
-                        <div class="mt-[6.5px] ml-[41.1px] absolute h-[8.13px] bg-amber-800 border rounded-full" :style="`width: ${barwidth}px;`"></div>
-                        <span class="ml-2 mt-[-0.5px] text-[14px] text-gray-400">01:30</span> 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" @click="showmusic" class="cursor-pointer size-5 ml-2"><path d="M21.4 9.4a3 3 0 0 1 0 5.2l-12.8 7C6.6 22.7 4 21.3 4 19V5c0-2.3 2.5-3.7 4.6-2.6z"></path></svg>
-                        <div class="mt-[5.5px] ml-3 w-[65px] h-[8.13px] bg-amber-50 border rounded-full"></div>
-                    </div>
-                </div>
-            </div>
-        </div>  -->
-
     </div>
+    
     <div v-else class="absolute">
         <div class="h-186 w-screen bg-none backdrop-blur-[30px] text-2xl b text-red-500 flex justify-center items-center">
             <div class="cursor-pointer" @click="toggleScreen = !toggleScreen">
                 CLICK PLEASE</div>
             </div>
     </div>
+
 </template>
