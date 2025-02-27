@@ -12,6 +12,13 @@ const toggleMusic = ref(false);
 const toggleScreen = ref(false)
 const barwidth = ref(0)
 const videoRef = ref(null);
+const cursorPosition = ref({x: 0, y: 0})
+const isCursorMoving = ref(false);
+const cursorMoveTimeout = ref();
+const circles = ref([]);
+const circleRemovalInterval = ref();
+
+
 const copyNickname = () => {
     navigator.clipboard.writeText("ggahramaq");
     username.value = "Copied!"
